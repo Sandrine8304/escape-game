@@ -1,0 +1,65 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    color: black;
+    background-image: url(images/haunted-house.jpg);
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    justify-items: auto;
+}
+
+h1 {
+    color: red;
+    text-shadow: 1px 1px 2px red, 0 0 1em white, 0 0 0.2em white;
+    text-align: center;
+    font-family: 'Emilys Candy', cursive;
+    font-size: 3em;
+    padding: 20px 40px;
+}
+
+#description {
+    color: black;
+    text-align: center;
+    font-family: 'Emilys Candy', cursive;
+    font-size: 2em;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+#movePlayer {
+    color: black;
+    text-align: center;
+    font-family: 'Emilys Candy', cursive;
+    font-size: 2em;
+}
+
+
+#start-btn {
+    margin: 20px auto;
+    font-size: 15px;
+    background-color: red;
+    color: #fff;
+    padding: 10px 20px;
+    border: 0;
+    border-radius: 5px;
+}
+
+canvas {
+    background-color: rgba(99, 97, 97, 0.85);
+    display: block;
+    margin: 20px auto;
+    border: solid 1px;
+}
+
+
+
