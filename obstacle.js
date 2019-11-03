@@ -9,7 +9,7 @@ class YellowGhost {
       const imgRatio = img.naturalWidth/img.naturalHeight;
       this.w = 30;
       this.h = this.w/imgRatio; 
-      this.x = Math.floor(Math.random()*(myGameArea.canvas.width - 30)) + 1;
+      this.x = Math.floor(Math.random()*(myGameArea.canvas.width - this.w)) + 1;
       this.y = Math.floor(Math.random()*(myGameArea.canvas.height - this.h)) + 1;
       this.dx = Math.floor(Math.random()*3) + 1;
       this.dy = Math.floor(Math.random()*3) + 1;
@@ -49,7 +49,7 @@ class RedGhost {
       const imgRatio = img.naturalWidth/img.naturalHeight;
       this.w = 30;
       this.h = this.w/imgRatio; 
-      this.x = Math.floor(Math.random()*(myGameArea.canvas.width - 30)) + 1;
+      this.x = Math.floor(Math.random()*(myGameArea.canvas.width - this.w)) + 1;
       this.y = Math.floor(Math.random()*(myGameArea.canvas.height - this.h)) + 1;
       this.dx = Math.floor(Math.random()*5) + 1;
       this.dy = Math.floor(Math.random()*5) + 1;
@@ -91,7 +91,7 @@ class BlueGhost {
       const imgRatio = img.naturalWidth/img.naturalHeight;
       this.w = 30;
       this.h = this.w/imgRatio; 
-      this.x = Math.floor(Math.random()*(myGameArea.canvas.width - 30)) + 1;
+      this.x = Math.floor(Math.random()*(myGameArea.canvas.width - this.w)) + 1;
       this.y = Math.floor(Math.random()*(myGameArea.canvas.height - this.h)) + 1;
       this.dx = Math.floor(Math.random()* -3) + 1;
       this.dy = Math.floor(Math.random()* 3) + 1;
@@ -130,7 +130,7 @@ class Pumpkin {
       const imgRatio = img.naturalWidth/img.naturalHeight;
       this.w = 30;
       this.h = this.w/imgRatio; 
-      this.x = Math.floor(Math.random()*(myGameArea.canvas.width - 30)) + 1;
+      this.x = Math.floor(Math.random()*(myGameArea.canvas.width - this.w)) + 1;
       this.y = Math.floor(Math.random()*(myGameArea.canvas.height - this.h)) + 1;
       this.dx = Math.floor(Math.random() * 3) + 1;
       this.dy = Math.floor(Math.random() * -3) + 1;

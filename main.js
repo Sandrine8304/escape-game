@@ -10,6 +10,10 @@ var myGameArea = {
   },
   clear: function() {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  },
+  win: function() {
+    clearInterval(this.interval);
+    console.log("you win");
   }
 };
 
@@ -74,7 +78,12 @@ function updateGameArea() {
   for (let i=0 ; i<level ; i++) {
     ghostsArray[i].draw(); 
   }
+  if ((player.x === key.x) && (player.y === key.y)) {
+    myGameArea.win();
+  }
 }
+
+
 
 
 //start game
