@@ -5,7 +5,7 @@ class Key {
         img.onload = () => {
             this.img = img;    
             const imgRatio = img.naturalWidth/img.naturalHeight;
-            this.w = 45;
+            this.w = 35;
             this.h = this.w/imgRatio; 
             this.x = (Math.random() * 620); //random x
             this.y = (Math.random() * 450); //random y

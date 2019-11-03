@@ -14,24 +14,24 @@ var myGameArea = {
 };
 
 
-//creation du player indiqué par les pas / chaussures
+//Jeu demarre au niveau 1 et va jusqu'au niveau 7 ; il y aura 7 niveaux au total
+//niveau 1 = 1 obstacle, niveau 2 = 2 obstacles, ... niveau 7 = 7 obstacles
+var level = 1;
+var ghostsArray = [];
+
+for (let i=0 ; i<level ; i++) {
+  if (i===0 || i===3) ghostsArray[i] = new RedGhost();
+  if (i===1 || i===4) ghostsArray[i] = new YellowGhost();
+  if (i===2 || i===5) ghostsArray[i] = new BlueGhost();
+  if (i===6) ghostsArray[i] = new Pumpkin();
+}
+
+//creation du player indiqué par les chaussures
 var player = new Player();
 var playerDown = new PlayerDown(); //pour avoir les pas vers le bas
 var playerLeft = new PlayerLeft(); //pour avoir les pas vers la gauche
 var playerRight = new PlayerRight(); //pour avoir les pas vers la droite
 var positionPlayer = 'up'; //position de départ du player
-
-
-//creation des obstacles : 7 niveaux donc 7 obstacles soit 1 par niveau 
-var obstacle1 = new Ghost();
-var obstacle2 = new Pumpkin();
-var obstacle3 = new Ghost();
-var obstacle4 = new Pumpkin();
-var obstacle5 = new Ghost();
-var obstacle6 = new Ghost();
-var obstacle7 = new Pumpkin();
-var level = 0;
-
 
 //creation de la clé qui apparait dans chaque niveau
 var key = new Key();
@@ -70,8 +70,10 @@ function updateGameArea() {
   myGameArea.clear();
   player.newPos();
   player.update();
-  obstacle1.draw(); //creer un tableau pour redessiner tous les obstacles
   key.draw();
+  for (let i=0 ; i<level ; i++) {
+    ghostsArray[i].draw(); 
+  }
 }
 
 
@@ -80,6 +82,9 @@ document.getElementById("start-btn").onclick = function() {
   myGameArea.start();
   updateGameArea(); 
 };
+
+//auto-start
+//myGameArea.start();
 
 
 // TO DO
