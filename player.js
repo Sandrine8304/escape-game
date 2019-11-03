@@ -38,6 +38,28 @@ class Player {
     if (this.y > (myGameArea.canvas.height - this.height)) this.y = (myGameArea.canvas.height - 10) - this.height;
     if (this.y < 10) this.y = 10;     
   }
+
+  left() {
+    return this.x;
+  }
+  right() {
+    return this.x + this.width;
+  }
+  top() {
+    return this.y;
+  }
+  bottom() {
+    return this.y + this.height;
+  }
+
+  grabTheKey(key) {
+    return !(
+      this.bottom() < key.top() ||
+      this.top() > key.bottom() ||
+      this.right() < key.left() ||
+      this.left() > key.right()
+    );
+  }
   
 }
 

@@ -13,7 +13,11 @@ var myGameArea = {
   },
   win: function() {
     clearInterval(this.interval);
-    console.log("you win");
+    console.log("You Won!");
+  },
+  lose: function() {
+    clearInterval(this.interval);
+    console.log("You Lost! GAME OVER :(");
   }
 };
 
@@ -69,6 +73,16 @@ document.onkeyup = function(e) {
   player.speedY = 0;
 };
 
+function checkLose() {
+  for (let i=0 ; i<level ; i++) {
+
+  }
+  
+  if (grabKey === false) {
+    myGameArea.win();
+  }
+}
+
 
 function updateGameArea() {
   myGameArea.clear();
@@ -78,9 +92,16 @@ function updateGameArea() {
   for (let i=0 ; i<level ; i++) {
     ghostsArray[i].draw(); 
   }
-  if ((player.x === key.x) && (player.y === key.y)) {
+  if (player.grabTheKey(key)) {
     myGameArea.win();
-  }
+    myGameArea.clear();
+  } 
+  for (let i=0 ; i<level ; i++) {
+    if (ghostsArray[i].catchPlayer(player)) {
+      myGameArea.lose();
+      myGameArea.clear();
+    } 
+  }  
 }
 
 

@@ -37,6 +37,28 @@ class YellowGhost {
     this.y += this.dy;
   }
 
+  left() {
+    return this.x;
+  }
+  right() {
+    return this.x + this.w;
+  }
+  top() {
+    return this.y;
+  }
+  bottom() {
+    return this.y + this.h;
+  }
+
+  catchPlayer(player) {
+    return !(
+      this.bottom() < player.top() ||
+      this.top() > player.bottom() ||
+      this.right() < player.left() ||
+      this.left() > player.right()
+    );
+  }
+
 }
 
 
@@ -77,8 +99,27 @@ class RedGhost {
     this.y += this.dy;
   }
 
+  left() {
+    return this.x;
+  }
+  right() {
+    return this.x + this.w;
+  }
+  top() {
+    return this.y;
+  }
+  bottom() {
+    return this.y + this.h;
+  }
 
-
+  catchPlayer(player) {
+    return !(
+      this.bottom() < player.top() ||
+      this.top() > player.bottom() ||
+      this.right() < player.left() ||
+      this.left() > player.right()
+    );
+  }
 }
 
 
@@ -119,6 +160,28 @@ class BlueGhost {
     this.y += this.dy;
   }
 
+  left() {
+    return this.x;
+  }
+  right() {
+    return this.x + this.w;
+  }
+  top() {
+    return this.y;
+  }
+  bottom() {
+    return this.y + this.h;
+  }
+
+  catchPlayer(player) {
+    return !(
+      this.bottom() < player.top() ||
+      this.top() > player.bottom() ||
+      this.right() < player.left() ||
+      this.left() > player.right()
+    );
+  }
+
 }
 
 
@@ -156,6 +219,28 @@ class Pumpkin {
 
     this.x += this.dx;
     this.y += this.dy;
+  }
+
+  left() {
+    return this.x;
+  }
+  right() {
+    return this.x + this.w;
+  }
+  top() {
+    return this.y;
+  }
+  bottom() {
+    return this.y + this.h;
+  }
+
+  catchPlayer(player) {
+    return !(
+      this.bottom() < player.top() ||
+      this.top() > player.bottom() ||
+      this.right() < player.left() ||
+      this.left() > player.right()
+    );
   }
 }
 
