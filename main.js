@@ -24,14 +24,13 @@ var myGameArea = {
 
 //Jeu demarre au niveau 1 et va jusqu'au niveau 7 ; il y aura 7 niveaux au total
 //niveau 1 = 1 obstacle, niveau 2 = 2 obstacles, ... niveau 7 = 7 obstacles
-var level = 1;
+var level = 2;
+var nextLevel = true;
 var ghostsArray = [];
 
 for (let i=0 ; i<level ; i++) {
-  if (i===0 || i===3) ghostsArray[i] = new RedGhost();
-  if (i===1 || i===4) ghostsArray[i] = new YellowGhost();
-  if (i===2 || i===5) ghostsArray[i] = new BlueGhost();
-  if (i===6) ghostsArray[i] = new Pumpkin();
+  var ghost = new YellowGhost();
+  ghostsArray[i] = ghost;
 }
 
 //creation du player indiqué par les chaussures
@@ -73,37 +72,37 @@ document.onkeyup = function(e) {
   player.speedY = 0;
 };
 
-function checkLose() {
-  for (let i=0 ; i<level ; i++) {
-
-  }
-  
-  if (grabKey === false) {
-    myGameArea.win();
-  }
-}
-
 
 function updateGameArea() {
-  myGameArea.clear();
-  player.newPos();
-  player.update();
-  key.draw();
-  for (let i=0 ; i<level ; i++) {
-    ghostsArray[i].draw(); 
-  }
-  if (player.grabTheKey(key)) {
-    myGameArea.win();
     myGameArea.clear();
-  } 
-  for (let i=0 ; i<level ; i++) {
-    if (ghostsArray[i].catchPlayer(player)) {
-      myGameArea.lose();
+    player.newPos();
+    player.update();
+    key.draw();
+
+    for (let i=0 ; i<ghostsArray.length ; i++) {
+      ghostsArray[i].draw(); 
+
+      if (ghostsArray[i].catchPlayer(player)) {
+        myGameArea.lose();
+        myGameArea.clear();
+      } 
+    }  
+
+    if (player.grabTheKey(key)) {
+      myGameArea.win();
       myGameArea.clear();
-    } 
-  }  
+      level += 1;
+    }
+    //return nextLevel;
 }
 
+function continueGame() {
+  if (nextLevel) {
+    console.log("coucou");
+    myGameArea.start();
+    updateGameArea();
+  }
+}
 
 
 
@@ -111,13 +110,8 @@ function updateGameArea() {
 document.getElementById("start-btn").onclick = function() {
   myGameArea.start();
   updateGameArea(); 
+  //continueGame();
 };
 
 //auto-start
 //myGameArea.start();
-
-
-// TO DO
-// 1-Grab the key & go to next level : clear canvas, create nex player and n+1 ghosts
-// 2-Collision with ghost, player has lost the game --> end the game + display a message "Game Over"
-// Compatabiliser les wins/ keys and dislay/update the wins/keys level by level

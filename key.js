@@ -7,8 +7,8 @@ class Key {
             const imgRatio = img.naturalWidth/img.naturalHeight;
             this.w = 35;
             this.h = this.w/imgRatio; 
-            this.x = Math.ceil(Math.random() * (myGameArea.canvas.width - 30)); //random x
-            this.y = Math.ceil(Math.random() * (myGameArea.canvas.height - 30)); //random y
+            this.x = Math.ceil(Math.random() * (600 - 35)); //random x
+            this.y = Math.ceil(Math.random() * (500 - this.h)); //random y
         }
         img.src = "images/keyOK.png";
     }
