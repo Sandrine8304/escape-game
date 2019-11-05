@@ -33,7 +33,7 @@ var myGameArea = {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
   },
   nextLevel: function() {
-    console.log("You Won!");
+    console.log(`You've got ${level} key(s)!`);
     init();
   },
   lose: function() {
@@ -107,7 +107,7 @@ function updateGameArea() {
     myGameArea.nextLevel();
     myGameArea.clear();
     level += 1;
-    console.log(level);
+    //console.log(level);
     myGameArea.checkWin();
   }  
 }
