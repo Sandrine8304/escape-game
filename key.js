@@ -7,12 +7,17 @@ class Key {
             const imgRatio = img.naturalWidth/img.naturalHeight;
             this.w = 35;
             this.h = this.w/imgRatio; 
-            this.x = Math.ceil(Math.random() * (600 - 35)); //random x
-            this.y = Math.ceil(Math.random() * (500 - this.h)); //random y
+            this.x = 0;
+            this.y = 0;
         }
         img.src = "images/keyOK.png";
     }
 
+    randomPos() {
+      this.x = Math.ceil(Math.random() * (600 - 35)); //random x
+      this.y = Math.ceil(Math.random() * (500 - this.h)); //random y
+    }
+    
     draw() {
         var ctx = myGameArea.context;
         if (!this.img) return; // if `this.img` is not loaded yet => don't draw

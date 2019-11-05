@@ -1,34 +1,8 @@
-// création du plateau de jeu
-var myGameArea = {
-  canvas: document.createElement("canvas"),
-  start: function() {
-    this.canvas.width = 650;
-    this.canvas.height = 500;
-    this.context = this.canvas.getContext("2d");
-    document.querySelector("body").appendChild(this.canvas);
-    this.interval = setInterval(updateGameArea, 20);
-  },
-  clear: function() {
-    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-  },
-  win: function() {
-    clearInterval(this.interval);
-    console.log("You Won!");
-  },
-  lose: function() {
-    clearInterval(this.interval);
-    console.log("You Lost! GAME OVER :(");
-  }
-};
-
-
 //Jeu demarre au niveau 1 et va jusqu'au niveau 7 ; il y aura 7 niveaux au total
 //niveau 1 = 1 obstacle, niveau 2 = 2 obstacles, ... niveau 7 = 7 obstacles
-var level = 2;
-var nextLevel = true;
+var level = 1;
 var ghostsArray = [];
-
-for (let i=0 ; i<level ; i++) {
+for (let i=0 ; i<4 ; i++) {
   var ghost = new YellowGhost();
   ghostsArray[i] = ghost;
 }
@@ -42,6 +16,38 @@ var positionPlayer = 'up'; //position de départ du player
 
 //creation de la clé qui apparait dans chaque niveau
 var key = new Key();
+
+
+// création du plateau de jeu
+var myGameArea = {
+  canvas: document.createElement("canvas"),
+  start: function() {
+    this.canvas.width = 650;
+    this.canvas.height = 500;
+    this.context = this.canvas.getContext("2d");
+    document.querySelector("body").appendChild(this.canvas);
+    this.interval = setInterval(updateGameArea, 20);
+    init();
+  },
+  clear: function() {
+    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  },
+  nextLevel: function() {
+    console.log("You Won!");
+    init();
+  },
+  lose: function() {
+    clearInterval(this.interval);
+    console.log("You Lost! GAME OVER :(");
+  },
+  checkWin: function() {
+    if (level === 5) {
+      this.clear();
+      clearInterval(this.interval);
+      console.log("Congratulations!!! You Won!!!")
+    }
+  }
+};
 
 
 //mouvement du player avec les fleches
@@ -72,46 +78,48 @@ document.onkeyup = function(e) {
   player.speedY = 0;
 };
 
-
-function updateGameArea() {
-    myGameArea.clear();
-    player.newPos();
-    player.update();
-    key.draw();
-
-    for (let i=0 ; i<ghostsArray.length ; i++) {
-      ghostsArray[i].draw(); 
-
-      if (ghostsArray[i].catchPlayer(player)) {
-        myGameArea.lose();
-        myGameArea.clear();
-      } 
-    }  
-
-    if (player.grabTheKey(key)) {
-      myGameArea.win();
-      myGameArea.clear();
-      level += 1;
-    }
-    //return nextLevel;
-}
-
-function continueGame() {
-  if (nextLevel) {
-    console.log("coucou");
-    myGameArea.start();
-    updateGameArea();
+function init() {
+  key.randomPos();
+  player.posInitial();
+  for (let i=0 ; i<level ; i++) {
+    ghostsArray[i].posInitial();
   }
 }
 
+function updateGameArea() {
+  myGameArea.clear();
+  player.newPos();
+  player.update();
+  key.draw();  
+
+  for (let i=0 ; i<level ; i++) {
+    ghostsArray[i].draw(); 
+  }
+  
+  for (let i=0 ; i<level ; i++) {
+    if (ghostsArray[i].catchPlayer(player)) {
+      myGameArea.lose();
+      myGameArea.clear();
+    } 
+  }  
+
+  if (player.grabTheKey(key)) {
+    myGameArea.nextLevel();
+    myGameArea.clear();
+    level += 1;
+    console.log(level);
+    myGameArea.checkWin();
+  }  
+}
 
 
 //start game
 document.getElementById("start-btn").onclick = function() {
   myGameArea.start();
   updateGameArea(); 
-  //continueGame();
+
 };
+
 
 //auto-start
 //myGameArea.start();

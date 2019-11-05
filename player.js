@@ -18,6 +18,12 @@ class Player {
     img.src = "images/pas.png";
   }
 
+  posInitial() {
+    this.x = 320;
+    this.y = 480; 
+    positionPlayer = "up";
+  }
+
 
   update() {
     var ctx = myGameArea.context;

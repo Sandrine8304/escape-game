@@ -18,6 +18,13 @@ class YellowGhost {
     img.src = "images/yellowGhost.png";
   }
 
+  posInitial() {
+    this.x = Math.floor(Math.random()*(myGameArea.canvas.width - this.w)) + 1;
+    this.y = Math.floor(Math.random()*(myGameArea.canvas.height - this.h)) + 1;
+    this.dx = Math.floor(Math.random()*3) + 1;
+    this.dy = Math.floor(Math.random()*3) + 1;
+  }
+
   drawObstacle() {
     var ctx = myGameArea.context;
     if (!this.img) return; // if `this.img` is not loaded yet => don't draw
@@ -60,6 +67,22 @@ class YellowGhost {
   }
 
 }
+
+// class GhostCreator {
+//   constructor() {
+//     this.ghostsArray = [];
+//   }
+
+//   createGhost() {
+//     for (let i=0 ; i<level ; i++) {
+//       var ghost = new YellowGhost;
+//       ghost.draw();
+//       this.ghostsArray[i] = ghost;
+//     }
+//     return this.ghostsArray;
+//   }
+  
+// }
 
 
 // class RedGhost {
