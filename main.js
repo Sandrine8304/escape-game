@@ -2,9 +2,16 @@
 //niveau 1 = 1 obstacle, niveau 2 = 2 obstacles, ... niveau 7 = 7 obstacles
 var level = 1;
 var ghostsArray = [];
-for (let i=0 ; i<4 ; i++) {
-  var ghost = new YellowGhost();
-  ghostsArray[i] = ghost;
+for (let i=0 ; i<7 ; i++) {
+  var yellowGhost = new YellowGhost();
+  var redGhost = new RedGhost();
+  var blueGhost = new BlueGhost();
+  var pumpkin = new Pumpkin();
+
+  if (i === 0 || i === 5) ghostsArray[i] = yellowGhost;
+  if (i === 1 || i === 4) ghostsArray[i] = blueGhost;
+  if (i === 2 || i === 3) ghostsArray[i] = redGhost;
+  if (i === 7) ghostsArray[i] = pumpkin;
 }
 
 //creation du player indiqué par les chaussures
@@ -17,17 +24,16 @@ var positionPlayer = 'up'; //position de départ du player
 //creation de la clé qui apparait dans chaque niveau
 var key = new Key();
 
-
 // création du plateau de jeu
 var myGameArea = {
-  canvas: document.createElement("canvas"),
+  canvas: document.getElementById("myCanvas"),
   start: function() {
-    this.canvas.width = 650;
-    this.canvas.height = 500;
     this.context = this.canvas.getContext("2d");
-    document.querySelector("body").appendChild(this.canvas);
     this.interval = setInterval(updateGameArea, 20);
     init();
+    hideKey();
+    hideGameOver;
+    hideWin;
   },
   clear: function() {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -35,16 +41,19 @@ var myGameArea = {
   nextLevel: function() {
     console.log(`You've got ${level} key(s)!`);
     init();
+    displayKey();
   },
   lose: function() {
     clearInterval(this.interval);
+    displayGomeOver();
     console.log("You Lost! GAME OVER :(");
   },
   checkWin: function() {
-    if (level === 5) {
+    if (level === 8) {
       this.clear();
       clearInterval(this.interval);
       console.log("Congratulations!!! You Won!!!")
+      displayWin();
     }
   }
 };
@@ -78,6 +87,7 @@ document.onkeyup = function(e) {
   player.speedY = 0;
 };
 
+
 function init() {
   key.randomPos();
   player.posInitial();
@@ -86,11 +96,64 @@ function init() {
   }
 }
 
+function displayKey() {
+  var keyToDisplay1 = document.querySelector(".key1");
+  var keyToDisplay2 = document.querySelector(".key2");
+  var keyToDisplay3 = document.querySelector(".key3");
+  var keyToDisplay4 = document.querySelector(".key4");
+  var keyToDisplay5 = document.querySelector(".key5");
+  var keyToDisplay6 = document.querySelector(".key6");
+  var keyToDisplay7 = document.querySelector(".key7");
+  
+  if (level === 1) keyToDisplay1.classList.remove('display-none');
+  if (level === 2) keyToDisplay2.classList.remove('display-none');
+  if (level === 3) keyToDisplay3.classList.remove('display-none');
+  if (level === 4) keyToDisplay4.classList.remove('display-none');
+  if (level === 5) keyToDisplay5.classList.remove('display-none');
+  if (level === 6) keyToDisplay6.classList.remove('display-none');
+  if (level === 7) keyToDisplay7.classList.remove('display-none');
+}
+
+function hideKey() {
+  var tabKeys = [...document.querySelectorAll(".key")];
+  for (let i=0 ; i<level ; i++){
+    tabKeys[i].classList.add('display-none');
+  }
+}
+
+
+function displayGomeOver() {
+  var gameOver = document.querySelector(".lose");
+  gameOver.classList.remove('display-none');
+}
+
+function hideGameOver() {
+  var gameOver = document.querySelector(".lose");
+  gameOver.classList.add('display-none');
+}
+
+function displayWin() {
+  var gameWon = document.querySelector(".final-win");
+  gameWon.classList.remove('display-none');
+}
+
+
+function hideWin() {
+  var gameWon = document.querySelector(".final-win");
+  gameWon.classList.add('display-none');
+}
+
+
+// function blink() {
+//   key.draw();
+// }
+
 function updateGameArea() {
   myGameArea.clear();
   player.newPos();
   player.update();
-  key.draw();  
+  key.draw();
+
 
   for (let i=0 ; i<level ; i++) {
     ghostsArray[i].draw(); 
@@ -107,7 +170,6 @@ function updateGameArea() {
     myGameArea.nextLevel();
     myGameArea.clear();
     level += 1;
-    //console.log(level);
     myGameArea.checkWin();
   }  
 }
@@ -117,7 +179,6 @@ function updateGameArea() {
 document.getElementById("start-btn").onclick = function() {
   myGameArea.start();
   updateGameArea(); 
-
 };
 
 

@@ -14,15 +14,19 @@ class Key {
     }
 
     randomPos() {
-      this.x = Math.ceil(Math.random() * (600 - 35)); //random x
-      this.y = Math.ceil(Math.random() * (500 - this.h)); //random y
+      this.x = Math.ceil(Math.random() * (myGameArea.canvas.width - this.w)); //random x
+      this.y = Math.ceil(Math.random() * (myGameArea.canvas.height - this.h)); //random y
     }
     
     draw() {
         var ctx = myGameArea.context;
         if (!this.img) return; // if `this.img` is not loaded yet => don't draw
         ctx.drawImage(this.img, this.x, this.y, this.w, this.h);
-    }   
+    }  
+    
+    // blink() {
+    //   setInterval(draw, 2000);
+    // }
 
     left() {
         return this.x;
