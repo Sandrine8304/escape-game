@@ -26,7 +26,6 @@ var key = new Key();
 
 //Afficher sur le canvas si gagne ou perd
 var gameOver = new GameOver();
-var gameWin = new GameWin();
 
 // création du plateau de jeu
 var myGameArea = {
@@ -36,7 +35,7 @@ var myGameArea = {
     this.interval = setInterval(updateGameArea, 20);
     level = 1;
     init();
-    hideKey();
+    hideWin();
   },
   clear: function() {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -55,8 +54,7 @@ var myGameArea = {
       this.clear();
       clearInterval(this.interval);
       console.log("Congratulations!!! You Won!!!")
-      gameWin.draw();
-      //displayWin();
+      displayWin();
     }
   }
 };
@@ -117,18 +115,22 @@ function displayKey() {
   if (level === 7) keyToDisplay7.classList.remove('display-none');
 }
 
-function hideKey() {
-  var tabKeys = [...document.querySelectorAll(".key")];
-  for (let i=0 ; i<level ; i++){
-    tabKeys[i].classList.add('display-none');
-  }
+
+function displayWin() {
+  var parentEl = document.querySelector("section");
+  parentEl.removeChild(document.querySelector("#key-won"));
+  parentEl.removeChild(document.querySelector("canvas"));
+  var gifWin = document.querySelector(".win");
+  parentEl.appendChild(gifWin);
+  gifWin.classList.remove("display-none");
 }
 
-// function displayWin() {
-//   myGameArea.clear();
-//   var gifWin = document.querySelector(".win");
-//   gifWin.classList.remove("display-none");
-// }
+
+function hideWin() {
+  var gifWin = document.querySelector(".win");
+  gifWin.classList.add("display-none");
+}
+
 
 function updateGameArea() {
   myGameArea.clear();
@@ -165,4 +167,4 @@ document.getElementById("start-btn").onclick = function() {
 
 
 //auto-start
-//myGameArea.start();
+// myGameArea.start();
