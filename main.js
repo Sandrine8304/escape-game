@@ -24,6 +24,9 @@ var positionPlayer = 'up'; //position de départ du player
 //creation de la clé qui apparait dans chaque niveau
 var key = new Key();
 
+//Afficher sur le canvas si gagne ou perd
+var gameOver = new GameOver();
+
 // création du plateau de jeu
 var myGameArea = {
   canvas: document.getElementById("myCanvas"),
@@ -32,8 +35,8 @@ var myGameArea = {
     this.interval = setInterval(updateGameArea, 20);
     init();
     hideKey();
-    hideGameOver;
-    hideWin;
+    hideWin();
+    level = 1;
   },
   clear: function() {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -45,7 +48,6 @@ var myGameArea = {
   },
   lose: function() {
     clearInterval(this.interval);
-    displayGomeOver();
     console.log("You Lost! GAME OVER :(");
   },
   checkWin: function() {
@@ -121,17 +123,6 @@ function hideKey() {
   }
 }
 
-
-function displayGomeOver() {
-  var gameOver = document.querySelector(".lose");
-  gameOver.classList.remove('display-none');
-}
-
-function hideGameOver() {
-  var gameOver = document.querySelector(".lose");
-  gameOver.classList.add('display-none');
-}
-
 function displayWin() {
   var gameWon = document.querySelector(".final-win");
   gameWon.classList.remove('display-none');
@@ -143,10 +134,6 @@ function hideWin() {
   gameWon.classList.add('display-none');
 }
 
-
-// function blink() {
-//   key.draw();
-// }
 
 function updateGameArea() {
   myGameArea.clear();
@@ -163,6 +150,7 @@ function updateGameArea() {
     if (ghostsArray[i].catchPlayer(player)) {
       myGameArea.lose();
       myGameArea.clear();
+      gameOver.draw();
     } 
   }  
 

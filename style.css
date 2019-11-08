@@ -114,8 +114,9 @@ canvas {
 
 }
 
-#win-lose {
+#lose {
     display: flex;
+    border: 1px;
     flex-direction: column;
     justify-content: center;
     padding-top: 0;
@@ -127,10 +128,12 @@ canvas {
 
 
 
-#lose {
-    padding-top: 5em;
-    padding-bottom: 5em; 
+#lose img {
+    display: block;
+    width: 5em;
 }
+
+
 
 .final-win {
     width: 50%;
