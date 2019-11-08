@@ -2,7 +2,7 @@
 //niveau 1 = 1 obstacle, niveau 2 = 2 obstacles, ... niveau 7 = 7 obstacles
 var level = 1;
 var ghostsArray = [];
-for (let i=0 ; i<7 ; i++) {
+for (let i=0 ; i<3 ; i++) {
   var yellowGhost = new YellowGhost();
   var redGhost = new RedGhost();
   var blueGhost = new BlueGhost();
@@ -26,6 +26,7 @@ var key = new Key();
 
 //Afficher sur le canvas si gagne ou perd
 var gameOver = new GameOver();
+var gameWin = new GameWin();
 
 // création du plateau de jeu
 var myGameArea = {
@@ -33,10 +34,9 @@ var myGameArea = {
   start: function() {
     this.context = this.canvas.getContext("2d");
     this.interval = setInterval(updateGameArea, 20);
+    level = 1;
     init();
     hideKey();
-    hideWin();
-    level = 1;
   },
   clear: function() {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -51,11 +51,12 @@ var myGameArea = {
     console.log("You Lost! GAME OVER :(");
   },
   checkWin: function() {
-    if (level === 8) {
+    if (level === 4) {
       this.clear();
       clearInterval(this.interval);
       console.log("Congratulations!!! You Won!!!")
-      displayWin();
+      gameWin.draw();
+      //displayWin();
     }
   }
 };
@@ -123,24 +124,17 @@ function hideKey() {
   }
 }
 
-function displayWin() {
-  var gameWon = document.querySelector(".final-win");
-  gameWon.classList.remove('display-none');
-}
-
-
-function hideWin() {
-  var gameWon = document.querySelector(".final-win");
-  gameWon.classList.add('display-none');
-}
-
+// function displayWin() {
+//   myGameArea.clear();
+//   var gifWin = document.querySelector(".win");
+//   gifWin.classList.remove("display-none");
+// }
 
 function updateGameArea() {
   myGameArea.clear();
   player.newPos();
   player.update();
   key.draw();
-
 
   for (let i=0 ; i<level ; i++) {
     ghostsArray[i].draw(); 
