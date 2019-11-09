@@ -62,7 +62,7 @@ var myGameArea = {
     hideKey();
   },
   checkWin: function() {
-    if (level === 4) {
+    if (level === 8) {
       this.clear();
       clearInterval(this.interval);
       console.log("Congratulations!!! You Won!!!")
@@ -108,7 +108,7 @@ function init() {
   // for (let i=0 ; i<level ; i++) {
   //   ghostsArray[i].posInitial();
   // }
-  for (let i=0 ; i<3 ; i++) {
+  for (let i=0 ; i<7 ; i++) {
     
   
     if (i === 0 || i === 5) ghostsArray[i] = yellowGhost;
