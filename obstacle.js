@@ -7,8 +7,8 @@ class YellowGhost {
     img.onload = () => {
       this.img = img;    
       const imgRatio = img.naturalWidth/img.naturalHeight;
-      this.w = 30;
-      this.h = this.w/imgRatio; 
+      this.w = 35;
+      this.h = this.w/imgRatio;
       this.x = Math.floor(Math.random()*(myGameArea.canvas.width - this.w)) + 1;
       this.y = Math.floor(Math.random()*(myGameArea.canvas.height - this.h)) + 1;
       this.dx = Math.floor(Math.random()*3) + 1;
@@ -76,7 +76,7 @@ class RedGhost {
     img.onload = () => {
       this.img = img;    
       const imgRatio = img.naturalWidth/img.naturalHeight;
-      this.w = 30;
+      this.w = 35;
       this.h = this.w/imgRatio; 
       this.x = Math.floor(Math.random()*(myGameArea.canvas.width - this.w)) + 1;
       this.y = Math.floor(Math.random()*(myGameArea.canvas.height - this.h)) + 1;
@@ -144,7 +144,7 @@ class BlueGhost {
     img.onload = () => {
       this.img = img;    
       const imgRatio = img.naturalWidth/img.naturalHeight;
-      this.w = 30;
+      this.w = 35;
       this.h = this.w/imgRatio; 
       this.x = Math.floor(Math.random()*(myGameArea.canvas.width - this.w)) + 1;
       this.y = Math.floor(Math.random()*(myGameArea.canvas.height - this.h)) + 1;
@@ -211,7 +211,7 @@ class Pumpkin {
     img.onload = () => {
       this.img = img;    
       const imgRatio = img.naturalWidth/img.naturalHeight;
-      this.w = 30;
+      this.w = 35;
       this.h = this.w/imgRatio; 
       this.x = Math.floor(Math.random()*(myGameArea.canvas.width - this.w)) + 1;
       this.y = Math.floor(Math.random()*(myGameArea.canvas.height - this.h)) + 1;

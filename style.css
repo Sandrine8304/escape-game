@@ -61,19 +61,18 @@ section {
     align-items: flex-start;
 }
 
-#key-won {
+.key-won {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 18%;
+    width: 20%;
     padding-top: 0;
     padding-bottom: 0;
-    margin-top: 20px;
+    margin-top: 70px;
     margin-bottom: 20px;  
 }
 
 #level {
-    /* font-family: 'Creepster', cursive; */
     font-family: 'Emilys Candy', cursive;
     color: black;
     text-align: center;
@@ -95,12 +94,18 @@ section {
     width: 3em;
 }
 
+.plateau {
+    display: flex;
+    margin-top: 70px;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
 canvas {
-    background-color: rgba(99, 97, 97, 0.85);
     display: block;
-    margin: 20px 20px;
-    border: solid 1px;
-    width: 60%;
+    margin-left: 7em;
+    background-color: rgba(99, 97, 97, 0.85);
+    
 }
 
 .win {
@@ -113,15 +118,26 @@ canvas {
     height: 400px;
     margin-top: 4em;
     margin-bottom: 2em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.awesome {
+    margin-left: auto;
+    margin-right: auto;
+    width: 41em;
+
 }
 
 h2 {
+    /* margin-right: auto;
+    margin-left: auto; */
     font-size: 2em;
     font-weight: bold;
-    color: red;
+    color:white;
     text-align: center;
     font-family: 'Emilys Candy', cursive;
-    background-color: rgba(99, 97, 97, 0.85);
+    background-color: rgba(99, 97, 97, 0.55);
 }
 
 

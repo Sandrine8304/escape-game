@@ -5,7 +5,7 @@ class Key {
         img.onload = () => {
             this.img = img;    
             const imgRatio = img.naturalWidth/img.naturalHeight;
-            this.w = 35;
+            this.w = 40;
             this.h = this.w/imgRatio; 
             this.x = 0;
             this.y = 0;

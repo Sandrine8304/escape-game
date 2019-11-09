@@ -29,16 +29,17 @@ var gameOver = new GameOver();
 
 // création du plateau de jeu
 var myGameArea = {
-  canvas: document.getElementById("myCanvas"),
+  canvas: document.querySelector(".myCanvas"),
   start: function() {
     this.context = this.canvas.getContext("2d");
     this.interval = setInterval(updateGameArea, 20);
     level = 1;
     init();
     hideWin();
+    // displayCanvas();
   },
   clear: function() {
-    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+   this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
   },
   nextLevel: function() {
     console.log(`You've got ${level} key(s)!`);
@@ -115,20 +116,28 @@ function displayKey() {
   if (level === 7) keyToDisplay7.classList.remove('display-none');
 }
 
+// function displayCanvas() {
+//   document.querySelector(".key-won").classList.remove("display-none");
+//   document.querySelector(".plateau").classList.remove("display-none");
+
+// }
+
 
 function displayWin() {
-  var parentEl = document.querySelector("section");
-  parentEl.removeChild(document.querySelector("#key-won"));
-  parentEl.removeChild(document.querySelector("canvas"));
-  var gifWin = document.querySelector(".win");
-  parentEl.appendChild(gifWin);
+  let plateauJeu = document.querySelector(".myCanvas");
+  let keyWon = document.querySelector(".key-won");
+  let gifWin = document.querySelector(".win");
+  plateauJeu.classList.add("display-none");
+  keyWon.classList.add("display-none");
   gifWin.classList.remove("display-none");
 }
 
 
 function hideWin() {
-  var gifWin = document.querySelector(".win");
+  // let plateau = document.querySelector("section");
+  let gifWin = document.querySelector(".win");
   gifWin.classList.add("display-none");
+  document.querySelector(".myCanvas").classList.remove("display-none");
 }
 
 
@@ -167,4 +176,6 @@ document.getElementById("start-btn").onclick = function() {
 
 
 //auto-start
+// document.querySelector("#key-won").classList.remove("display-none");
+// document.querySelector(".plateau").classList.remove("display-none");
 // myGameArea.start();
