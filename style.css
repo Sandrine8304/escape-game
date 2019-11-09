@@ -72,11 +72,12 @@ section {
     margin-bottom: 20px;  
 }
 
-#level {
+.level {
     font-family: 'Emilys Candy', cursive;
     color: black;
     text-align: center;
-    font-size: 1.5em;   
+    font-size: 1.5em; 
+    text-decoration: underline;
 }
 
 .key {

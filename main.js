@@ -1,42 +1,23 @@
-//Jeu demarre au niveau 1 et va jusqu'au niveau 7 ; il y aura 7 niveaux au total
-//niveau 1 = 1 obstacle, niveau 2 = 2 obstacles, ... niveau 7 = 7 obstacles
 var level = 1;
 var ghostsArray = [];
 var yellowGhost = new YellowGhost();
-var redGhost = new RedGhost();
-var blueGhost = new BlueGhost();
+var redGhost2 = new RedGhost();
+var blueGhost1 = new BlueGhost();
+var yellowGhost5 = new YellowGhost();
+var redGhost3 = new RedGhost();
+var blueGhost4 = new BlueGhost();
 var pumpkin = new Pumpkin();
-
-// for (let i=0 ; i<3 ; i++) {
-//   var yellowGhost = new YellowGhost();
-//   var redGhost = new RedGhost();
-//   var blueGhost = new BlueGhost();
-//   var pumpkin = new Pumpkin();
-
-//   if (i === 0 || i === 5) ghostsArray[i] = yellowGhost;
-//   if (i === 1 || i === 4) ghostsArray[i] = blueGhost;
-//   if (i === 2 || i === 3) ghostsArray[i] = redGhost;
-//   if (i === 7) ghostsArray[i] = pumpkin;
-// }
-
-
-//creation du player indiqué par les chaussures
 var player = new Player();
 var playerDown = new PlayerDown(); //pour avoir les pas vers le bas
 var playerLeft = new PlayerLeft(); //pour avoir les pas vers la gauche
 var playerRight = new PlayerRight(); //pour avoir les pas vers la droite
 var positionPlayer = 'up'; //position de départ du player
-
-//audio pour la clé
 var keyAudio = new Audio("audio/zapsplat_multimedia_game_sound_collect_coin_single_012_40832.mp3");
-
-//creation de la clé qui apparait dans chaque niveau
+var loseAudio = new Audio("audio/zapsplat_lose.mp3");
+var winAudio = new Audio("audio/zapsplat_multimedia_male_voice_processed_says_you_win_001_21572.mp3");
 var key = new Key();
-
-//Afficher sur le canvas si gagne ou perd
 var gameOver = new GameOver();
 
-// création du plateau de jeu
 var myGameArea = {
   canvas: document.querySelector(".myCanvas"),
   start: function() {
@@ -60,12 +41,13 @@ var myGameArea = {
     hideKey();
   },
   checkWin: function() {
-    if (level === 8) {
+    if (level === 5) {
       this.clear();
       clearInterval(this.interval);
-      console.log("Congratulations!!! You Won!!!")
+      console.log("Congratulations!!! You Won!!!");
       hideKey();
       displayWin();
+      winAudio.play();
     }
   }
 };
@@ -100,19 +82,24 @@ document.onkeyup = function(e) {
 };
 
 
+for (let i=0 ; i<7 ; i++) {  
+  if (i === 0) ghostsArray[i] = yellowGhost;
+  if (i === 5) ghostsArray[i] = yellowGhost5;
+  if (i === 1) ghostsArray[i] = blueGhost1;
+  if (i === 2) ghostsArray[i] = redGhost2;
+  if (i === 4) ghostsArray[i] = blueGhost4;
+  if (i === 3) ghostsArray[i] = redGhost3;
+  if (i === 6) ghostsArray[i] = pumpkin;
+}  
+
+
 function init() {
   key.randomPos();
   player.posInitial();
-  // for (let i=0 ; i<level ; i++) {
-  //   ghostsArray[i].posInitial();
-  // }
-  for (let i=0 ; i<7 ; i++) {  
-    if (i === 0 || i === 5) ghostsArray[i] = yellowGhost;
-    if (i === 1 || i === 4) ghostsArray[i] = blueGhost;
-    if (i === 2 || i === 3) ghostsArray[i] = redGhost;
-    if (i === 7) ghostsArray[i] = pumpkin;
-  }  
-  
+  for (let i=0 ; i<7 ; i++) {
+    ghostsArray[i].posInitial();
+  }
+    
 }
 
 function displayKey() {
@@ -135,10 +122,10 @@ function displayKey() {
 
 function hideKey() {
   var tabKeys = [...document.querySelectorAll(".key")];
+
   for (let i=0 ; i<level ; i++) {
     tabKeys[i].classList.add("display-none");
   }
-  
 }
 
 
@@ -172,6 +159,7 @@ function updateGameArea() {
   
   for (let i=0 ; i<level ; i++) {
     if (ghostsArray[i].catchPlayer(player)) {
+      loseAudio.play();
       myGameArea.lose();
       myGameArea.clear();
       gameOver.draw();
@@ -193,8 +181,3 @@ document.getElementById("start-btn").onclick = function() {
   myGameArea.start();
   updateGameArea(); 
 };
-
-
-//auto-start
-// document.querySelector(".key-won").classList.remove("display-none");
-// myGameArea.start();

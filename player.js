@@ -9,8 +9,8 @@ class Player {
     const imgRatio = img.naturalWidth/img.naturalHeight;
     this.width = 38;
     this.height = this.width/imgRatio; 
-    this.x = 360;
-    this.y = 440;
+    this.x = 420;
+    this.y = 480;
     this.speedX = 0;
     this.speedY = 0;
     }
