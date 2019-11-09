@@ -45,8 +45,6 @@ var myGameArea = {
     level = 1;
     init();
     hideWin();
-
-
   },
   clear: function() {
    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -108,9 +106,7 @@ function init() {
   // for (let i=0 ; i<level ; i++) {
   //   ghostsArray[i].posInitial();
   // }
-  for (let i=0 ; i<7 ; i++) {
-    
-  
+  for (let i=0 ; i<7 ; i++) {  
     if (i === 0 || i === 5) ghostsArray[i] = yellowGhost;
     if (i === 1 || i === 4) ghostsArray[i] = blueGhost;
     if (i === 2 || i === 3) ghostsArray[i] = redGhost;
