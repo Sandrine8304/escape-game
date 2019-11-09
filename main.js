@@ -14,12 +14,16 @@ for (let i=0 ; i<3 ; i++) {
   if (i === 7) ghostsArray[i] = pumpkin;
 }
 
+
 //creation du player indiqué par les chaussures
 var player = new Player();
 var playerDown = new PlayerDown(); //pour avoir les pas vers le bas
 var playerLeft = new PlayerLeft(); //pour avoir les pas vers la gauche
 var playerRight = new PlayerRight(); //pour avoir les pas vers la droite
 var positionPlayer = 'up'; //position de départ du player
+
+//audio pour la clé
+var keyAudio = new Audio("audio/zapsplat_multimedia_game_sound_collect_coin_single_012_40832.mp3");
 
 //creation de la clé qui apparait dans chaque niveau
 var key = new Key();
@@ -36,6 +40,7 @@ var myGameArea = {
     level = 1;
     init();
     hideWin();
+
 
   },
   clear: function() {
@@ -98,6 +103,13 @@ function init() {
   for (let i=0 ; i<level ; i++) {
     ghostsArray[i].posInitial();
   }
+
+  //catchPlayer false
+  // for (let i=0 ; i<level ; i++) {
+  //   ghostsArray[i].catchPlayer(player) = false;
+  // }
+  
+  
 }
 
 function displayKey() {
@@ -164,6 +176,7 @@ function updateGameArea() {
   }  
 
   if (player.grabTheKey(key)) {
+    keyAudio.play();
     myGameArea.nextLevel();
     myGameArea.clear();
     level += 1;
