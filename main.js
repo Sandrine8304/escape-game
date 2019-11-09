@@ -2,17 +2,22 @@
 //niveau 1 = 1 obstacle, niveau 2 = 2 obstacles, ... niveau 7 = 7 obstacles
 var level = 1;
 var ghostsArray = [];
-for (let i=0 ; i<3 ; i++) {
-  var yellowGhost = new YellowGhost();
-  var redGhost = new RedGhost();
-  var blueGhost = new BlueGhost();
-  var pumpkin = new Pumpkin();
+var yellowGhost = new YellowGhost();
+var redGhost = new RedGhost();
+var blueGhost = new BlueGhost();
+var pumpkin = new Pumpkin();
 
-  if (i === 0 || i === 5) ghostsArray[i] = yellowGhost;
-  if (i === 1 || i === 4) ghostsArray[i] = blueGhost;
-  if (i === 2 || i === 3) ghostsArray[i] = redGhost;
-  if (i === 7) ghostsArray[i] = pumpkin;
-}
+// for (let i=0 ; i<3 ; i++) {
+//   var yellowGhost = new YellowGhost();
+//   var redGhost = new RedGhost();
+//   var blueGhost = new BlueGhost();
+//   var pumpkin = new Pumpkin();
+
+//   if (i === 0 || i === 5) ghostsArray[i] = yellowGhost;
+//   if (i === 1 || i === 4) ghostsArray[i] = blueGhost;
+//   if (i === 2 || i === 3) ghostsArray[i] = redGhost;
+//   if (i === 7) ghostsArray[i] = pumpkin;
+// }
 
 
 //creation du player indiqué par les chaussures
@@ -100,15 +105,17 @@ document.onkeyup = function(e) {
 function init() {
   key.randomPos();
   player.posInitial();
-  for (let i=0 ; i<level ; i++) {
-    ghostsArray[i].posInitial();
-  }
-
-  //catchPlayer false
   // for (let i=0 ; i<level ; i++) {
-  //   ghostsArray[i].catchPlayer(player) = false;
+  //   ghostsArray[i].posInitial();
   // }
+  for (let i=0 ; i<3 ; i++) {
+    
   
+    if (i === 0 || i === 5) ghostsArray[i] = yellowGhost;
+    if (i === 1 || i === 4) ghostsArray[i] = blueGhost;
+    if (i === 2 || i === 3) ghostsArray[i] = redGhost;
+    if (i === 7) ghostsArray[i] = pumpkin;
+  }  
   
 }
 
