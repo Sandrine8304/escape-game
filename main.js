@@ -36,7 +36,7 @@ var myGameArea = {
     level = 1;
     init();
     hideWin();
-    // displayCanvas();
+
   },
   clear: function() {
    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -49,12 +49,14 @@ var myGameArea = {
   lose: function() {
     clearInterval(this.interval);
     console.log("You Lost! GAME OVER :(");
+    hideKey();
   },
   checkWin: function() {
     if (level === 4) {
       this.clear();
       clearInterval(this.interval);
       console.log("Congratulations!!! You Won!!!")
+      hideKey();
       displayWin();
     }
   }
@@ -116,11 +118,13 @@ function displayKey() {
   if (level === 7) keyToDisplay7.classList.remove('display-none');
 }
 
-// function displayCanvas() {
-//   document.querySelector(".key-won").classList.remove("display-none");
-//   document.querySelector(".plateau").classList.remove("display-none");
-
-// }
+function hideKey() {
+  var tabKeys = [...document.querySelectorAll(".key")];
+  for (let i=0 ; i<level ; i++) {
+    tabKeys[i].classList.add("display-none");
+  }
+  
+}
 
 
 function displayWin() {
@@ -134,9 +138,9 @@ function displayWin() {
 
 
 function hideWin() {
-  // let plateau = document.querySelector("section");
   let gifWin = document.querySelector(".win");
   gifWin.classList.add("display-none");
+  document.querySelector(".key-won").classList.remove("display-none");
   document.querySelector(".myCanvas").classList.remove("display-none");
 }
 
@@ -176,6 +180,5 @@ document.getElementById("start-btn").onclick = function() {
 
 
 //auto-start
-// document.querySelector("#key-won").classList.remove("display-none");
-// document.querySelector(".plateau").classList.remove("display-none");
+// document.querySelector(".key-won").classList.remove("display-none");
 // myGameArea.start();
