@@ -9,7 +9,7 @@ class Player {
     const imgRatio = img.naturalWidth/img.naturalHeight;
     this.width = 38;
     this.height = this.width/imgRatio; 
-    this.x = 420;
+    this.x = 430;
     this.y = 480;
     this.speedX = 0;
     this.speedY = 0;
@@ -19,7 +19,7 @@ class Player {
   }
 
   posInitial() {
-    this.x = 420;
+    this.x = 430;
     this.y = 480; 
     positionPlayer = "up";
   }
